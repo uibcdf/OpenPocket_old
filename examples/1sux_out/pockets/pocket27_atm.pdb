@@ -1,0 +1,38 @@
+HEADER
+HEADER This is a pdb format file writen by the programm fpocket.                 
+HEADER It represents the atoms contacted by the voronoi vertices of the pocket.  
+HEADER                                                                           
+HEADER Information about the pocket    27:
+HEADER 0  - Pocket Score                      : -0.0075
+HEADER 1  - Drug Score                        : 0.0081
+HEADER 2  - Number of alpha spheres           :    18
+HEADER 3  - Mean alpha-sphere radius          : 3.8905
+HEADER 4  - Mean alpha-sphere Solvent Acc.    : 0.5556
+HEADER 5  - Mean B-factor of pocket residues  : 0.6449
+HEADER 6  - Hydrophobicity Score              : 41.4286
+HEADER 7  - Polarity Score                    :     4
+HEADER 8  - Amino Acid based volume Score     : 5.0000
+HEADER 9  - Pocket volume (Monte Carlo)       : 198.5954
+HEADER 10  -Pocket volume (convex hull)       : 4.7434
+HEADER 11 - Charge Score                      :     2
+HEADER 12 - Local hydrophobic density Score   : 9.0000
+HEADER 13 - Number of apolar alpha sphere     :    10
+HEADER 14 - Proportion of apolar alpha sphere : 0.5556
+ATOM   3384   NE ARG B 193      37.134 114.976  32.856  0.83  9.84           N 0
+ATOM   3354   CB LEU B 190      35.360 113.011  36.650  0.00  0.00           C 0
+ATOM   2984   CB ALA B 141      38.788 114.775  40.914  0.00  0.00           C 0
+ATOM   3387  NH2 ARG B 193      35.289 115.620  34.067  0.00  0.00           N 0
+ATOM   3389   CA TRP B 194      39.954 109.520  32.828  0.00  0.00           C 0
+ATOM   3388    N TRP B 194      38.637 110.051  32.474  0.70  1.09           N 0
+ATOM   3383   CD ARG B 193      37.901 114.734  31.632  0.00  0.00           C 0
+ATOM   3394  CD1 TRP B 194      42.316 109.710  35.345  0.00  0.00           C 0
+ATOM   3434   NZ LYS B 198      44.141 111.676  32.518  0.43  9.84           N 0
+ATOM   3425   OG SER B 197      42.163 110.760  30.203  0.50  4.29           O 0
+ATOM   3380    O ARG B 193      39.221 110.524  30.359  0.56  1.07           O 0
+ATOM   3010  CD1 LEU B 145      40.551 111.735  38.039  0.00  0.00           C 0
+ATOM   3353    O LEU B 190      36.876 110.819  34.824  0.74  1.07           O 0
+ATOM   3356  CD1 LEU B 190      36.559 111.500  38.244  0.00  0.00           C 0
+ATOM   3357  CD2 LEU B 190      35.190 113.387  39.102  0.00  0.00           C 0
+ATOM   3392   CB TRP B 194      40.008 109.219  34.327  0.00  0.00           C 0
+TER
+END

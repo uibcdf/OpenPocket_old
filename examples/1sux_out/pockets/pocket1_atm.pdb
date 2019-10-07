@@ -1,0 +1,58 @@
+HEADER
+HEADER This is a pdb format file writen by the programm fpocket.                 
+HEADER It represents the atoms contacted by the voronoi vertices of the pocket.  
+HEADER                                                                           
+HEADER Information about the pocket     1:
+HEADER 0  - Pocket Score                      : 0.5872
+HEADER 1  - Drug Score                        : 0.0430
+HEADER 2  - Number of alpha spheres           :    55
+HEADER 3  - Mean alpha-sphere radius          : 3.8632
+HEADER 4  - Mean alpha-sphere Solvent Acc.    : 0.5098
+HEADER 5  - Mean B-factor of pocket residues  : 0.3324
+HEADER 6  - Hydrophobicity Score              : 20.8889
+HEADER 7  - Polarity Score                    :     7
+HEADER 8  - Amino Acid based volume Score     : 3.1667
+HEADER 9  - Pocket volume (Monte Carlo)       : 556.5400
+HEADER 10  -Pocket volume (convex hull)       : 70.8810
+HEADER 11 - Charge Score                      :     2
+HEADER 12 - Local hydrophobic density Score   : 7.3333
+HEADER 13 - Number of apolar alpha sphere     :     9
+HEADER 14 - Proportion of apolar alpha sphere : 0.1636
+ATOM   3549   OG SER B 214      18.956 105.303  47.965  0.63  5.36           O 0
+ATOM   3251    O LYS B 177      22.054 109.188  50.407  0.72  5.36           O 0
+ATOM   3263  CG2 VAL B 178      18.122 108.836  49.264  0.00  0.00           C 0
+ATOM   3247    O GLY B 176      20.192 110.031  54.160  0.57  8.57           O 0
+ATOM   3246    C GLY B 176      21.393 109.782  54.035  0.00  0.00           C 0
+ATOM   3228    O ILE B 173      25.151 106.721  54.396  0.50  4.29           O 0
+ATOM   3226   CA ILE B 173      25.583 106.727  52.025  0.00  0.00           C 0
+ATOM   3245   CA GLY B 176      22.126 108.977  55.091  0.00  0.00           C 0
+ATOM   3548   CB SER B 214      20.321 105.613  47.742  0.00  0.00           C 0
+ATOM   3231  CG2 ILE B 173      25.831 104.241  52.279  0.00  0.00           C 0
+ATOM   2015   NZ LYS B  14      25.496  98.639  51.504  0.74  3.28           N 0
+ATOM   2014   CE LYS B  14      25.590  97.276  50.903  0.00  0.00           C 0
+ATOM   3708   CA GLY B 235      21.885  97.603  48.200  0.00  0.00           C 0
+ATOM   3707    N GLY B 235      21.830  98.043  46.821  0.54  1.09           N 0
+ATOM   3695    O LEU B 233      24.443  99.346  44.091  0.68  1.07           O 0
+ATOM   3545   CA SER B 214      20.974 104.591  46.808  0.00  0.00           C 0
+ATOM   3543    O GLY B 213      22.948 102.992  45.703  0.00  0.00           O 0
+ATOM   3550    N VAL B 215      19.758 103.178  45.250  0.00  0.00           N 0
+ATOM   1989   CB ASN B  12      25.681  94.470  46.775  0.00  0.00           C 0
+ATOM   3703    O VAL B 234      22.634  96.105  45.994  0.00  0.00           O 0
+ATOM   2640  NE2 HIS B  96      29.149  98.096  48.942  0.74  3.28           N 0
+ATOM   3539    O GLY B 212      26.349 102.624  45.944  0.68  1.07           O 0
+ATOM   3697   CG LEU B 233      27.173  97.374  43.848  0.00  0.00           C 0
+ATOM   3699  CD2 LEU B 233      28.613  97.716  44.202  0.00  0.00           C 0
+ATOM   3702    C VAL B 234      22.218  97.250  45.825  0.00  0.00           C 0
+ATOM   3232  CD1 ILE B 173      27.055 104.374  49.314  0.00  0.00           C 0
+ATOM   1992  ND2 ASN B  12      27.462  95.199  48.251  0.00  0.00           N 0
+ATOM   3553    O VAL B 215      17.755 101.132  45.220  0.00  0.00           O 0
+ATOM   3715    N ALA B 237      17.422  97.464  48.362  0.45  2.19           N 0
+ATOM   3563  CG2 THR B 216      15.338 102.831  46.609  0.00  0.00           C 0
+ATOM   3191  OE2 GLU B 168      30.084 100.903  48.281  0.00  0.00           O 0
+ATOM   3230  CG1 ILE B 173      26.072 105.305  50.018  0.00  0.00           C 0
+ATOM   3542    C GLY B 213      23.218 104.168  45.961  0.00  0.00           C 0
+ATOM   3544    N SER B 214      22.335 105.011  46.487  0.69  1.09           N 0
+ATOM   3711    N GLY B 236      20.030  97.560  49.756  0.53  2.19           N 0
+ATOM   3712   CA GLY B 236      18.790  97.067  50.340  0.00  0.00           C 0
+TER
+END

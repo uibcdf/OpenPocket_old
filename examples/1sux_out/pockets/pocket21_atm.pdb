@@ -1,0 +1,37 @@
+HEADER
+HEADER This is a pdb format file writen by the programm fpocket.                 
+HEADER It represents the atoms contacted by the voronoi vertices of the pocket.  
+HEADER                                                                           
+HEADER Information about the pocket    21:
+HEADER 0  - Pocket Score                      : 0.0661
+HEADER 1  - Drug Score                        : 0.0362
+HEADER 2  - Number of alpha spheres           :    18
+HEADER 3  - Mean alpha-sphere radius          : 3.6782
+HEADER 4  - Mean alpha-sphere Solvent Acc.    : 0.5079
+HEADER 5  - Mean B-factor of pocket residues  : 0.3169
+HEADER 6  - Hydrophobicity Score              : 30.2857
+HEADER 7  - Polarity Score                    :     2
+HEADER 8  - Amino Acid based volume Score     : 3.2857
+HEADER 9  - Pocket volume (Monte Carlo)       : 141.8498
+HEADER 10  -Pocket volume (convex hull)       : 2.0276
+HEADER 11 - Charge Score                      :     1
+HEADER 12 - Local hydrophobic density Score   : 13.0000
+HEADER 13 - Number of apolar alpha sphere     :    14
+HEADER 14 - Proportion of apolar alpha sphere : 0.7778
+ATOM   2575    C GLY B  88      31.498  79.333  39.275  0.00  0.00           C 0
+ATOM   2576    O GLY B  88      30.668  79.777  38.483  0.07  5.36           O 0
+ATOM   2589   CB SER B  90      32.846  83.336  36.233  0.00  0.00           C 0
+ATOM   2574   CA GLY B  88      31.945  77.885  39.192  0.00  0.00           C 0
+ATOM   2825    O ALA B 120      40.036  83.003  36.152  0.47  1.07           O 0
+ATOM   2830    O GLY B 121      37.061  85.397  34.094  0.38  9.64           O 0
+ATOM   2551   CE LYS B  85      39.540  79.649  36.435  0.00  0.00           C 0
+ATOM   2549   CG LYS B  85      38.052  79.466  38.455  0.00  0.00           C 0
+ATOM   2837  CD1 PHE B 122      38.088  84.966  39.072  0.00  0.00           C 0
+ATOM   2839  CE1 PHE B 122      38.128  83.912  39.977  0.00  0.00           C 0
+ATOM   2547    O LYS B  85      35.548  77.602  39.450  0.52  7.50           O 0
+ATOM   2580    O ILE B  89      33.913  82.165  39.831  0.73  1.07           O 0
+ATOM   2829    C GLY B 121      38.059  85.494  34.807  0.00  0.00           C 0
+ATOM   2586   CA SER B  90      33.105  83.756  37.684  0.00  0.00           C 0
+ATOM   2831    N PHE B 122      38.028  86.064  36.008  0.00  0.00           N 0
+TER
+END

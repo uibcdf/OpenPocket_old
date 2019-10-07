@@ -1,0 +1,42 @@
+HEADER
+HEADER This is a pdb format file writen by the programm fpocket.                 
+HEADER It represents the atoms contacted by the voronoi vertices of the pocket.  
+HEADER                                                                           
+HEADER Information about the pocket    13:
+HEADER 0  - Pocket Score                      : 0.1170
+HEADER 1  - Drug Score                        : 0.0027
+HEADER 2  - Number of alpha spheres           :    20
+HEADER 3  - Mean alpha-sphere radius          : 3.9643
+HEADER 4  - Mean alpha-sphere Solvent Acc.    : 0.6116
+HEADER 5  - Mean B-factor of pocket residues  : 0.5405
+HEADER 6  - Hydrophobicity Score              : 30.1000
+HEADER 7  - Polarity Score                    :     4
+HEADER 8  - Amino Acid based volume Score     : 4.1000
+HEADER 9  - Pocket volume (Monte Carlo)       : 294.1158
+HEADER 10  -Pocket volume (convex hull)       : 13.6713
+HEADER 11 - Charge Score                      :     1
+HEADER 12 - Local hydrophobic density Score   : 7.0000
+HEADER 13 - Number of apolar alpha sphere     :     8
+HEADER 14 - Proportion of apolar alpha sphere : 0.4000
+ATOM    461    O PHE A  61      28.654  66.592  64.121  0.00  0.00           O 0
+ATOM    437    O ASN A  58      28.669  63.137  62.910  0.00  0.00           O 0
+ATOM    443   CA PRO A  59      26.965  61.967  64.795  0.00  0.00           C 0
+ATOM    430    O THR A  57      26.271  61.211  60.954  0.37  2.14           O 0
+ATOM    429    C THR A  57      27.076  61.617  60.113  0.00  0.00           C 0
+ATOM    422    O LEU A  56      26.436  64.765  57.911  0.64  8.57           O 0
+ATOM    426  CD2 LEU A  56      30.399  66.632  59.690  0.00  0.00           C 0
+ATOM    424   CG LEU A  56      29.927  65.399  58.925  0.00  0.00           C 0
+ATOM    394    O LYS A  53      24.811  68.075  56.169  0.64  3.21           O 0
+ATOM    485  CD1 ILE A  63      28.583  70.476  58.520  0.00  0.00           C 0
+ATOM    392   CA LYS A  53      26.409  69.864  56.175  0.00  0.00           C 0
+ATOM    395   CB LYS A  53      25.625  71.147  56.458  0.00  0.00           C 0
+ATOM    397   CDALYS A  53      23.595  72.193  57.507  0.00  0.00           C 0
+ATOM    399   CEALYS A  53      22.346  71.927  58.328  0.00  0.00           C 0
+ATOM    668    O GLY A  88      23.682  74.097  62.309  0.47  2.14           O 0
+ATOM    477  NE2 GLN A  62      26.981  70.513  65.212  0.46  8.75           N 0
+ATOM    676  CD1 ILE A  89      26.545  75.003  59.699  0.00  0.00           C 0
+ATOM    483  CG1 ILE A  63      29.412  70.533  59.765  0.00  0.00           C 0
+ATOM    478    N ILE A  63      29.625  70.952  62.724  0.71  2.19           N 0
+ATOM    482   CB ILE A  63      29.400  71.900  60.453  0.00  0.00           C 0
+TER
+END

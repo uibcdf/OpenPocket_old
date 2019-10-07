@@ -1,0 +1,35 @@
+HEADER
+HEADER This is a pdb format file writen by the programm fpocket.                 
+HEADER It represents the atoms contacted by the voronoi vertices of the pocket.  
+HEADER                                                                           
+HEADER Information about the pocket    25:
+HEADER 0  - Pocket Score                      : 0.0238
+HEADER 1  - Drug Score                        : 0.0040
+HEADER 2  - Number of alpha spheres           :    15
+HEADER 3  - Mean alpha-sphere radius          : 3.9094
+HEADER 4  - Mean alpha-sphere Solvent Acc.    : 0.5022
+HEADER 5  - Mean B-factor of pocket residues  : 0.3689
+HEADER 6  - Hydrophobicity Score              : 42.5000
+HEADER 7  - Polarity Score                    :     3
+HEADER 8  - Amino Acid based volume Score     : 3.7500
+HEADER 9  - Pocket volume (Monte Carlo)       : 165.7254
+HEADER 10  -Pocket volume (convex hull)       : 3.8253
+HEADER 11 - Charge Score                      :    -1
+HEADER 12 - Local hydrophobic density Score   : 8.0000
+HEADER 13 - Number of apolar alpha sphere     :     9
+HEADER 14 - Proportion of apolar alpha sphere : 0.6000
+ATOM   1293  CG1 VAL A 170      52.148  83.487  64.790  0.00  0.00           C 0
+ATOM    745   CG GLU A  98      46.487  82.693  59.933  0.00  0.00           C 0
+ATOM    778  CD2 LEU A 101      50.046  86.728  63.290  0.00  0.00           C 0
+ATOM    790   OH TYR A 102      50.033  84.926  57.833  0.00  0.00           O 0
+ATOM   1291    O VAL A 170      53.218  80.569  64.546  0.40  2.14           O 0
+ATOM   1317    O ILE A 173      52.623  78.196  61.114  0.00  0.00           O 0
+ATOM   1318   CB ILE A 173      50.455  78.655  63.067  0.00  0.00           C 0
+ATOM    738   OGASER A  97      47.256  82.323  64.279  0.00  0.00           O 0
+ATOM    748  OE2 GLU A  98      46.844  80.337  59.811  0.00  0.00           O 0
+ATOM   2466   CB ALA B  74      47.716  79.448  56.683  0.00  0.00           C 0
+ATOM   1320  CG2 ILE A 173      49.415  78.528  61.954  0.00  0.00           C 0
+ATOM   1323   CA GLY A 174      52.291  75.785  59.739  0.00  0.00           C 0
+ATOM   1321  CD1 ILE A 173      48.800  79.905  64.576  0.00  0.00           C 0
+TER
+END

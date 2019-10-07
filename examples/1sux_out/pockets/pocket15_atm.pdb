@@ -1,0 +1,36 @@
+HEADER
+HEADER This is a pdb format file writen by the programm fpocket.                 
+HEADER It represents the atoms contacted by the voronoi vertices of the pocket.  
+HEADER                                                                           
+HEADER Information about the pocket    15:
+HEADER 0  - Pocket Score                      : 0.1067
+HEADER 1  - Drug Score                        : 0.0093
+HEADER 2  - Number of alpha spheres           :    17
+HEADER 3  - Mean alpha-sphere radius          : 3.7258
+HEADER 4  - Mean alpha-sphere Solvent Acc.    : 0.4894
+HEADER 5  - Mean B-factor of pocket residues  : 0.2817
+HEADER 6  - Hydrophobicity Score              : 30.2857
+HEADER 7  - Polarity Score                    :     2
+HEADER 8  - Amino Acid based volume Score     : 3.2857
+HEADER 9  - Pocket volume (Monte Carlo)       : 162.1889
+HEADER 10  -Pocket volume (convex hull)       : 2.4024
+HEADER 11 - Charge Score                      :     1
+HEADER 12 - Local hydrophobic density Score   : 9.0000
+HEADER 13 - Number of apolar alpha sphere     :    10
+HEADER 14 - Proportion of apolar alpha sphere : 0.5882
+ATOM    932  CE1 PHE A 122      25.532  81.488  66.402  0.00  0.00           C 0
+ATOM    672    O ILE A  89      25.335  77.768  63.999  0.66  2.14           O 0
+ATOM    918    O ALA A 120      22.782  81.077  69.619  0.70  3.21           O 0
+ATOM    641   CG LYS A  85      21.104  80.563  65.291  0.00  0.00           C 0
+ATOM    681   CB SER A  90      25.288  75.202  66.872  0.00  0.00           C 0
+ATOM    639    O LYS A  85      20.828  78.648  62.485  0.48  6.43           O 0
+ATOM    643   CE LYS A  85      20.145  80.789  67.614  0.00  0.00           C 0
+ATOM    923    O GLY A 121      25.017  77.742  71.087  0.81  6.43           O 0
+ATOM    667    C GLY A  88      23.357  75.222  61.914  0.00  0.00           C 0
+ATOM    666   CA GLY A  88      21.937  75.497  61.455  0.00  0.00           C 0
+ATOM    668    O GLY A  88      23.682  74.097  62.309  0.47  2.14           O 0
+ATOM    678   CA SER A  90      26.184  76.137  66.052  0.00  0.00           C 0
+ATOM    930  CD1 PHE A 122      26.145  81.115  67.603  0.00  0.00           C 0
+ATOM    922    C GLY A 121      25.070  78.970  71.062  0.00  0.00           C 0
+TER
+END

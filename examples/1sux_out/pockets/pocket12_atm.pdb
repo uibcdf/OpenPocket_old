@@ -1,0 +1,43 @@
+HEADER
+HEADER This is a pdb format file writen by the programm fpocket.                 
+HEADER It represents the atoms contacted by the voronoi vertices of the pocket.  
+HEADER                                                                           
+HEADER Information about the pocket    12:
+HEADER 0  - Pocket Score                      : 0.1368
+HEADER 1  - Drug Score                        : 0.0105
+HEADER 2  - Number of alpha spheres           :    27
+HEADER 3  - Mean alpha-sphere radius          : 3.6883
+HEADER 4  - Mean alpha-sphere Solvent Acc.    : 0.4409
+HEADER 5  - Mean B-factor of pocket residues  : 0.6143
+HEADER 6  - Hydrophobicity Score              : 31.7778
+HEADER 7  - Polarity Score                    :     6
+HEADER 8  - Amino Acid based volume Score     : 5.0000
+HEADER 9  - Pocket volume (Monte Carlo)       : 263.9542
+HEADER 10  -Pocket volume (convex hull)       : 15.8877
+HEADER 11 - Charge Score                      :     1
+HEADER 12 - Local hydrophobic density Score   : 6.0000
+HEADER 13 - Number of apolar alpha sphere     :     7
+HEADER 14 - Proportion of apolar alpha sphere : 0.2593
+ATOM   1186    O LYS A 157      29.586  80.662  83.119  0.77  3.21           O 0
+ATOM   1189   CA GLU A 158      26.886  80.671  82.340  0.00  0.00           C 0
+ATOM   1191    O GLU A 158      27.498  79.283  80.475  0.63  1.07           O 0
+ATOM   1220   CB SER A 161      28.338  75.674  79.796  0.00  0.00           C 0
+ATOM   1216    N SER A 161      30.049  77.439  79.610  0.61  1.09           N 0
+ATOM   1217   CA SER A 161      29.736  76.052  79.286  0.00  0.00           C 0
+ATOM   1219    O SER A 161      29.942  74.698  77.313  0.00  3.21           O 0
+ATOM   1568  OE1 GLN A 206      31.086  72.337  84.570  0.47  7.50           O 0
+ATOM   1548  CG1 ILE A 203      32.341  77.788  85.412  0.00  0.00           C 0
+ATOM   1549  CG2 ILE A 203      34.410  78.152  84.005  0.00  0.00           C 0
+ATOM   1204    C TRP A 160      31.289  77.894  79.455  0.00  0.00           C 0
+ATOM   1206   CB TRP A 160      32.349  79.459  81.103  0.00  0.00           C 0
+ATOM   1565   CB GLN A 206      33.582  71.783  83.094  0.00  0.00           C 0
+ATOM   1564    O GLN A 206      35.004  71.814  80.425  0.80  5.36           O 0
+ATOM   1205    O TRP A 160      32.208  77.180  79.044  0.54  7.50           O 0
+ATOM   1544   CA ILE A 203      34.143  76.042  85.357  0.00  0.00           C 0
+ATOM   1546    O ILE A 203      35.704  75.393  83.656  0.46  1.07           O 0
+ATOM   1236    O VAL A 163      34.540  76.295  76.393  0.33  1.07           O 0
+ATOM   1585   NE ARG A 208      34.399  71.290  76.354  0.57  4.37           N 0
+ATOM   1563    C GLN A 206      35.452  72.227  81.491  0.00  0.00           C 0
+ATOM   1570    N LEU A 207      36.292  73.250  81.572  0.00  0.00           N 0
+TER
+END

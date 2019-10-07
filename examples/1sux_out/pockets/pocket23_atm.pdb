@@ -1,0 +1,35 @@
+HEADER
+HEADER This is a pdb format file writen by the programm fpocket.                 
+HEADER It represents the atoms contacted by the voronoi vertices of the pocket.  
+HEADER                                                                           
+HEADER Information about the pocket    23:
+HEADER 0  - Pocket Score                      : 0.0443
+HEADER 1  - Drug Score                        : 0.0036
+HEADER 2  - Number of alpha spheres           :    16
+HEADER 3  - Mean alpha-sphere radius          : 4.0183
+HEADER 4  - Mean alpha-sphere Solvent Acc.    : 0.5536
+HEADER 5  - Mean B-factor of pocket residues  : 0.4941
+HEADER 6  - Hydrophobicity Score              : 35.3333
+HEADER 7  - Polarity Score                    :     1
+HEADER 8  - Amino Acid based volume Score     : 4.0000
+HEADER 9  - Pocket volume (Monte Carlo)       : 127.1739
+HEADER 10  -Pocket volume (convex hull)       : 0.2545
+HEADER 11 - Charge Score                      :     0
+HEADER 12 - Local hydrophobic density Score   : 8.0000
+HEADER 13 - Number of apolar alpha sphere     :     9
+HEADER 14 - Proportion of apolar alpha sphere : 0.5625
+ATOM   2083   CB PRO B  24      10.449  83.959  48.675  0.00  0.00           C 0
+ATOM   2062  CD1 LEU B  21      13.895  88.202  52.622  0.00  0.00           C 0
+ATOM   2059    O LEU B  21      13.884  85.341  50.243  0.57  2.14           O 0
+ATOM   3748   CG PRO B 241       9.414  91.032  46.292  0.00  0.00           C 0
+ATOM   3749   CD PRO B 241      10.351  91.981  47.007  0.00  0.00           C 0
+ATOM   2086    N LEU B  25      12.746  85.160  46.941  0.75  1.09           N 0
+ATOM   2090   CB LEU B  25      14.413  86.954  46.928  0.00  0.00           C 0
+ATOM   2092  CD1 LEU B  25      14.000  89.211  45.961  0.00  0.00           C 0
+ATOM   3729    O LEU B 239      14.509  91.237  49.264  0.68  5.36           O 0
+ATOM   2087   CA LEU B  25      13.319  86.231  46.136  0.00  0.00           C 0
+ATOM   2116  OG1 THR B  28       9.571  86.521  44.055  0.00  0.00           O 0
+ATOM   2081    C PRO B  24      11.687  84.468  46.533  0.00  0.00           C 0
+ATOM   2082    O PRO B  24      11.112  84.685  45.467  0.63  2.14           O 0
+TER
+END

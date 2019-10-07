@@ -1,0 +1,42 @@
+HEADER
+HEADER This is a pdb format file writen by the programm fpocket.                 
+HEADER It represents the atoms contacted by the voronoi vertices of the pocket.  
+HEADER                                                                           
+HEADER Information about the pocket    26:
+HEADER 0  - Pocket Score                      : 0.0110
+HEADER 1  - Drug Score                        : 0.0001
+HEADER 2  - Number of alpha spheres           :    18
+HEADER 3  - Mean alpha-sphere radius          : 4.0232
+HEADER 4  - Mean alpha-sphere Solvent Acc.    : 0.6324
+HEADER 5  - Mean B-factor of pocket residues  : 0.6147
+HEADER 6  - Hydrophobicity Score              : 21.2857
+HEADER 7  - Polarity Score                    :     4
+HEADER 8  - Amino Acid based volume Score     : 3.7143
+HEADER 9  - Pocket volume (Monte Carlo)       : 270.3371
+HEADER 10  -Pocket volume (convex hull)       : 8.5330
+HEADER 11 - Charge Score                      :     1
+HEADER 12 - Local hydrophobic density Score   : 3.0000
+HEADER 13 - Number of apolar alpha sphere     :     4
+HEADER 14 - Proportion of apolar alpha sphere : 0.2222
+ATOM   2805  NE2 GLN B 116      47.301  86.764  40.582  0.00  0.00           N 0
+ATOM   2822    N ALA B 120      42.682  85.409  36.779  0.00  0.00           N 0
+ATOM   2821   CB ALA B 119      45.538  86.933  36.535  0.00  0.00           C 0
+ATOM   2820    O ALA B 119      43.881  84.634  35.039  0.00  0.00           O 0
+ATOM   2819    C ALA B 119      43.588  85.544  35.815  0.00  0.00           C 0
+ATOM   2800    O GLN B 116      43.225  86.749  39.284  0.00  0.00           O 0
+ATOM   2826   CB ALA B 120      41.545  84.049  38.458  0.00  0.00           C 0
+ATOM   2437    O THR B  70      44.857  84.326  45.002  0.29  9.64           O 0
+ATOM   2523   CB GLN B  82      41.987  79.146  43.500  0.00  0.00           C 0
+ATOM   2519    N GLN B  82      40.566  81.133  43.749  0.61  1.09           N 0
+ATOM   2520   CA GLN B  82      40.630  79.780  43.199  0.00  0.00           C 0
+ATOM   2525   CD GLN B  82      41.932  77.513  41.541  0.00  0.00           C 0
+ATOM   2823   CA ALA B 120      41.969  84.153  36.998  0.00  0.00           C 0
+ATOM   2527  NE2 GLN B  82      43.014  77.155  40.857  0.00  0.00           N 0
+ATOM   2552   NZ LYS B  85      40.781  80.256  35.883  0.25  8.75           N 0
+ATOM   2550   CD LYS B  85      39.396  79.940  37.921  0.00  0.00           C 0
+ATOM   2526  OE1 GLN B  82      40.835  77.695  41.003  0.43  9.64           O 0
+ATOM   2515   CB LEU B  81      40.503  84.275  43.211  0.00  0.00           C 0
+ATOM   2517  CD1 LEU B  81      41.526  86.507  42.705  0.00  0.00           C 0
+ATOM   2801   CB GLN B 116      45.042  87.864  41.718  0.00  0.00           C 0
+TER
+END

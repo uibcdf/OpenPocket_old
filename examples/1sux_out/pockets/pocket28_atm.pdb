@@ -1,0 +1,34 @@
+HEADER
+HEADER This is a pdb format file writen by the programm fpocket.                 
+HEADER It represents the atoms contacted by the voronoi vertices of the pocket.  
+HEADER                                                                           
+HEADER Information about the pocket    28:
+HEADER 0  - Pocket Score                      : -0.0153
+HEADER 1  - Drug Score                        : 0.0013
+HEADER 2  - Number of alpha spheres           :    15
+HEADER 3  - Mean alpha-sphere radius          : 3.6414
+HEADER 4  - Mean alpha-sphere Solvent Acc.    : 0.4195
+HEADER 5  - Mean B-factor of pocket residues  : 0.5373
+HEADER 6  - Hydrophobicity Score              : 4.1429
+HEADER 7  - Polarity Score                    :     4
+HEADER 8  - Amino Acid based volume Score     : 3.7143
+HEADER 9  - Pocket volume (Monte Carlo)       : 128.5219
+HEADER 10  -Pocket volume (convex hull)       : 1.0140
+HEADER 11 - Charge Score                      :     1
+HEADER 12 - Local hydrophobic density Score   : 5.0000
+HEADER 13 - Number of apolar alpha sphere     :     6
+HEADER 14 - Proportion of apolar alpha sphere : 0.4000
+ATOM   2142    O ALA B  32      12.235  86.713  34.392  0.36  4.29           O 0
+ATOM   2145   CA THR B  33      11.402  88.046  32.122  0.00  0.00           C 0
+ATOM   2150  CG2 THR B  33      11.061  87.339  29.723  0.00  0.00           C 0
+ATOM   2149  OG1 THR B  33       9.933  86.198  31.525  0.00  0.00           O 0
+ATOM   2362   CG LYS B  60      18.240  88.363  31.405  0.00  0.00           C 0
+ATOM   2364   CE LYS B  60      17.738  88.886  29.018  0.00  0.00           C 0
+ATOM   2355   CG PRO B  59      17.126  83.894  30.842  0.00  0.00           C 0
+ATOM   2154    O PHE B  34      14.786  89.805  28.857  0.50  4.29           O 0
+ATOM   2151    N PHE B  34      13.135  89.505  31.262  0.74  3.28           N 0
+ATOM   2356   CD PRO B  59      16.778  83.415  32.234  0.00  0.00           C 0
+ATOM   2129    O ASN B  30      12.221  83.423  35.994  0.62  9.64           O 0
+ATOM   2348  OD1 ASN B  58      16.925  86.301  33.886  0.52  1.07           O 0
+TER
+END
