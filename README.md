@@ -1,4 +1,4 @@
-# ppocket
+# OpenPocket
 
 ## Introduction
 
