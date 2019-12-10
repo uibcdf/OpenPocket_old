@@ -1,7 +1,108 @@
 
-class alpha_spheres_set():
+def alpha_spheres(item, selection='all', frame_indices='all', syntaxis='MolModMT', minimum_radius =
+        3.2 * angstroms, maximum_radius = 7.6 * angstroms):
 
-    def __init__(self, points=None, minimum_radius=None, maximum_radius=None):
+    """alpha_spheres(item, selection='all', frame_indices='all', syntaxis='MolModMT')
+
+    Get the set of alpha spheres.
+
+    Given a molecular model the whole set of alpha spheres is computed for the atoms and frames
+    selected.
+
+    Parameters
+    ----------
+
+    item: molecular model
+        Molecular model in any supported form by MolModMT(see: XXX).
+
+    selection: str, default='heavy atoms'
+       Selection criterion given by a string following any of the selection syntaxis parsable by
+       MolModMT, or a list of atoms (see: XXX).
+
+    syntaxis: str, default='MolModMT'
+       Syntaxis used to write the argument `selection`. The current options supported by MolModMt
+       can be found in (see: XXX).
+
+    Returns
+    -------
+
+    Class AlphaSpheres
+        The output is an object of class AlphaSpheres (see: XXX).
+
+    Examples
+    --------
+
+    See Also
+    --------
+
+    Notes
+    -----
+
+    """
+
+    # fpocket
+    # minimum_radius = 3.2 * angstroms
+    # maximum_radius = 7.6 * angstroms
+
+    # alphaspace
+    # minimum_radius = 3.2 * angstroms
+    # maximum_radius = 5.4 * angstroms
+
+    from molmodmt import convert, select, get
+
+    atom_indices = select(item, selection=selection, syntaxis=syntaxis)
+    coordinates = get(item, target='atom', indices=atom_indices, frame_indices=frame_indices,
+            coordinates=True)
+
+    return AlphaSpheres(points=coordinates, minimum_radius=minimum_radius, maximum_radius=maximum_radius)
+
+class AlphaSpheres():
+
+    def __init__(self, points=None, minimum_radius= 3.2 * angstroms, maximum_radius= 7.6 * angstroms):
+
+        """AlphaSpheres(item, selection='all', output_indices='atom', syntaxis='MolModMT')
+
+        Get the atom indices corresponding to a selection criterion.
+
+        Paragraph with detailed explanation.
+
+        Parameters
+        ----------
+
+        item: molecular model
+            Molecular model in any supported form (see: :doc:`/Forms`). The object being acted on by the method.
+
+        selection: str, default='all'
+           Selection criterion given by means of a string following any of the selection syntaxis parsable by MolModMT.
+
+        output_indices: str, default='atom'
+           The output list can correspond to 'atom', 'group', 'component', 'molecule', 'chain' or 'entity'
+           indices.
+
+        syntaxis: str, default='MolModMT'
+           Syntaxis used to write the argument `selection`. The current options supported by MolModMt
+           can be found in :doc:`/Atoms_Selection`.
+
+        Returns
+        -------
+
+        Numpy array of integers
+            List of indices in agreement with the selection criterion applied over `item`. The nature
+            of the indices is chosen with the impot argument 'output_indices': 'atom' (default),
+            'group', 'component', 'molecule', 'chain' or 'entity'.
+
+        Examples
+        --------
+
+        :doc:`/Atoms_Selection`
+
+        See Also
+        --------
+
+        Notes
+        -----
+
+        """
 
         # fpocket
         # minimum_radius = 3.2 * angstroms
