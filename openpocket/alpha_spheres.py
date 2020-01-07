@@ -1,8 +1,9 @@
 
 def alpha_spheres(item, selection='all', frame_indices='all', syntaxis='MolModMT', minimum_radius =
-        3.2 * angstroms, maximum_radius = 7.6 * angstroms):
+        None, maximum_radius = None):
 
-    """alpha_spheres(item, selection='all', frame_indices='all', syntaxis='MolModMT')
+    """alpha_spheres(item, selection='all', frame_indices='all', syntaxis='MolModMT',
+    minimum_radius=None, maximum_radius=None)
 
     Get the set of alpha spheres.
 
@@ -48,53 +49,50 @@ def alpha_spheres(item, selection='all', frame_indices='all', syntaxis='MolModMT
     # minimum_radius = 3.2 * angstroms
     # maximum_radius = 5.4 * angstroms
 
-    from molmodmt import convert, select, get
+    from molmodmt import select, get
+    from numpy import where
 
     atom_indices = select(item, selection=selection, syntaxis=syntaxis)
-    coordinates = get(item, target='atom', indices=atom_indices, frame_indices=frame_indices,
-            coordinates=True)
+    coordinates = get(item, target='atom', indices=atom_indices, frame_indices=frame_indices, coordinates=True)
 
-    return AlphaSpheres(points=coordinates, minimum_radius=minimum_radius, maximum_radius=maximum_radius)
+    alpha_spheres_set = AlphaSpheresSet(points=coordinates)
 
-class AlphaSpheres():
+    if minimum_radius is not None:
+        indices_to_remove = where(alpha_spheres_set.radii < minimum_radius)
+        alpha_spheres_set.remove(indices_to_remove)
 
-    def __init__(self, points=None, minimum_radius= 3.2 * angstroms, maximum_radius= 7.6 * angstroms):
+            if maximum_radius is not None:
+                mask = (tmp_radii<maximum_radius)
+                tmp_vertices = tmp_vertices[mask,:]
+                tmp_neighbor_points = tmp_neighbor_points[mask,:]
+                tmp_radii = tmp_radii[mask]
 
-        """AlphaSpheres(item, selection='all', output_indices='atom', syntaxis='MolModMT')
 
-        Get the atom indices corresponding to a selection criterion.
+
+
+class AlphaSpheresSet():
+
+    def __init__(self, points=None):
+
+        """AlphaSpheresSet(points=None)
+
+        Class representing a set of Alpha spheres.
 
         Paragraph with detailed explanation.
 
         Parameters
         ----------
 
-        item: molecular model
-            Molecular model in any supported form (see: :doc:`/Forms`). The object being acted on by the method.
-
-        selection: str, default='all'
-           Selection criterion given by means of a string following any of the selection syntaxis parsable by MolModMT.
-
-        output_indices: str, default='atom'
-           The output list can correspond to 'atom', 'group', 'component', 'molecule', 'chain' or 'entity'
-           indices.
-
-        syntaxis: str, default='MolModMT'
-           Syntaxis used to write the argument `selection`. The current options supported by MolModMt
-           can be found in :doc:`/Atoms_Selection`.
+        points: numpy array
+            Float numpy array with shape: [natoms, 3]
 
         Returns
         -------
 
-        Numpy array of integers
-            List of indices in agreement with the selection criterion applied over `item`. The nature
-            of the indices is chosen with the impot argument 'output_indices': 'atom' (default),
-            'group', 'component', 'molecule', 'chain' or 'entity'.
+        Class
 
         Examples
         --------
-
-        :doc:`/Atoms_Selection`
 
         See Also
         --------
@@ -102,6 +100,77 @@ class AlphaSpheres():
         Notes
         -----
 
+        """
+
+        self.points=None
+        self.n_points=None
+        self.vertices=None
+        self.neighbor_points=None
+        self.radii=None
+        self.n_alpha_spheres=None
+
+        if points is not None:
+
+            from scipy.spatial import Voronoi
+            from molmodmt import neighbors_lists
+            from numpy import array, zeros
+
+            unit_length = points.unit
+
+            self.points = points
+            self.n_points = points.shape[0]
+            self.vertices = []
+            self.neighbor_points = []
+            self.radii = []
+            self.n_alpha_spheres = 0
+
+            self.vertices = Voronoi(self.points[:,:]).vertices*unit_length
+            self.neighbor_points, self.radii = neighbors_lists(item_1=self.vertices, item_2=self.points, num_neighbors=4)
+            self.neighbor_points = self.neighbor_points[0,:,:]
+            self.radii = self.radii[0,:,0]
+
+    def remove(self, indices=None):
+
+        from numpy import ones
+        mask = ones([self.n_alpha_spheres], dtype=bool)
+        mask[indices] = False
+        self.vertices = self.vertices[mask,:]
+        self.neighbor_points = self.neighbor_points[mask,:]
+        self.radii = self.radii[mask]
+        self.n_alpha_spheres = self.vertices.shape[0]
+
+class AlphaSpheres_OLD():
+
+    def __init__(self, points=None, minimum_radius= 3.2 * angstroms, maximum_radius= 7.6 * angstroms):
+
+        """AlphaSpheres(item, selection='all', output_indices='atom', syntaxis='MolModMT')
+        Get the atom indices corresponding to a selection criterion.
+        Paragraph with detailed explanation.
+        Parameters
+        ----------
+        item: molecular model
+            Molecular model in any supported form (see: :doc:`/Forms`). The object being acted on by the method.
+        selection: str, default='all'
+           Selection criterion given by means of a string following any of the selection syntaxis parsable by MolModMT.
+        output_indices: str, default='atom'
+           The output list can correspond to 'atom', 'group', 'component', 'molecule', 'chain' or 'entity'
+           indices.
+        syntaxis: str, default='MolModMT'
+           Syntaxis used to write the argument `selection`. The current options supported by MolModMt
+           can be found in :doc:`/Atoms_Selection`.
+        Returns
+        -------
+        Numpy array of integers
+            List of indices in agreement with the selection criterion applied over `item`. The nature
+            of the indices is chosen with the impot argument 'output_indices': 'atom' (default),
+            'group', 'component', 'molecule', 'chain' or 'entity'.
+        Examples
+        --------
+        :doc:`/Atoms_Selection`
+        See Also
+        --------
+        Notes
+        -----
         """
 
         # fpocket
@@ -193,4 +262,3 @@ class AlphaSpheres():
         self.removing_alpha_spheres(to_be_removed)
 
         return new_clusters
-
