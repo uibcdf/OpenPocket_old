@@ -79,12 +79,12 @@ class AlphaSpheresSet():
         Array of coordinates in space of all points used to generate the set of alpha-spheres.
     n_points: int
         Number of points in space to generate the set of alpha-spheres.
-    vertices: xxx
+    centers: xxx
         No recuerdo ahora.
-    neighbor_points: xxx
-        Indices of points in the surface of each alpha-sphere.
     radii: numpy.ndarray
         Array with the radii of alpha-spheres.
+    points_in_surface: xxx
+        Indices of points in the surface of each alpha-sphere.
     n_alpha_spheres: int
         Number of alpha-spheres in the set.
 
@@ -122,8 +122,8 @@ class AlphaSpheresSet():
 
         self.points=None
         self.n_points=None
-        self.vertices=None
-        self.neighbor_points=None
+        self.centers=None
+        self.points_in_surface=None
         self.radii=None
         self.n_alpha_spheres=None
 
@@ -131,21 +131,22 @@ class AlphaSpheresSet():
 
             from scipy.spatial import Voronoi
             from molmodmt import neighbors_lists
-            from numpy import array, zeros
+            from numpy import array, zeros, sort
 
             unit_length = points.unit
 
             self.points = points
             self.n_points = points.shape[0]
-            self.vertices = []
-            self.neighbor_points = []
+            self.centers = []
+            self.points_in_surface = []
             self.radii = []
             self.n_alpha_spheres = 0
 
-            self.vertices = Voronoi(self.points[:,:]).vertices*unit_length
-            self.neighbor_points, self.radii = neighbors_lists(item_1=self.vertices, item_2=self.points, num_neighbors=4)
-            self.neighbor_points = self.neighbor_points[0,:,:]
+            self.centers = Voronoi(self.points[:,:]).vertices*unit_length
+            self.points_in_surface, self.radii = neighbors_lists(item_1=self.centers, item_2=self.points, num_neighbors=4)
+            self.points_in_surface = sort(self.points_in_surface[0,:,:])
             self.radii = self.radii[0,:,0]
+            self.n_alpha_spheres = self.centers.shape[0]
 
     def remove(self, indices):
 
@@ -168,8 +169,89 @@ class AlphaSpheresSet():
         from numpy import ones
         mask = ones([self.n_alpha_spheres], dtype=bool)
         mask[indices] = False
-        self.vertices = self.vertices[mask,:]
-        self.neighbor_points = self.neighbor_points[mask,:]
+        self.centers = self.centers[mask,:]
+        self.points_in_surface = self.points_in_surface[mask,:]
         self.radii = self.radii[mask]
-        self.n_alpha_spheres = self.vertices.shape[0]
+        self.n_alpha_spheres = self.centers.shape[0]
+
+    def get_points_in_surfaces(self, indices):
+
+        """Get the points in contact with a subset of alpha-spheres
+
+        The list of point indices accounting for the points in contact with a subset of alpha-spheres is calculated.
+
+        Parameters
+        ----------
+        indices : numpy.ndarray, list or tuple (dtype:ints)
+            List, tuple or numpy.ndarray with the alpha-sphere indices defining the subset.
+
+        Return
+        ------
+        points_in_surfaces : list
+            List of point indices in contact with one or more alpha-spheres of the subset.
+
+        Examples
+        --------
+
+        >>> import openpocket as opp
+        >>> from simtk import unit
+        >>> points = ([[-1.,  2.,  0.],
+        >>>            [ 0.,  2.,  1.],
+        >>>            [ 1., -2.,  1.],
+        >>>            [ 0.,  1.,  1.],
+        >>>            [ 0.,  0.,  0.],
+        >>>            [-1., -1.,  0.]]) * unit.angstrom
+        >>> aspheres = opp.alpha_spheres.AlphaSpheresSet(points)
+        >>> aspheres.get_points_in_surfaces([1,3])
+        [0,2,3,4,5]
+
+        """
+
+        point_indices = set([])
+
+        for index in indices:
+            point_indices = point_indices.union(set(self.points_in_surface[index]))
+
+        return list(point_indices)
+
+    def view(self, indices='all'):
+
+        """3D spatial view of alpha-spheres and points
+
+        An NGLview view is returned with alpha-spheres (gray color) and points (red color).
+
+        Parameters
+        ----------
+
+        Returns
+        -------
+
+        Examples
+        --------
+
+        """
+
+
+        import nglview as nv
+
+        view = nv.NGLWidget()
+
+        point_indices = []
+
+        if indices=='all':
+            indices=range(self.n_alpha_spheres)
+            point_indices=range(self.n_points)
+        else:
+            point_indices=self.get_points_in_surfaces(indices)
+
+        for index in point_indices:
+            atom_coordinates = self.points[index,:]._value
+            view.shape.add_sphere(list(atom_coordinates), [0.8,0.0,0.0], 0.2)
+
+        for index in indices:
+            sphere_coordinates = self.centers[index,:]._value
+            sphere_radius = self.radii[index]._value
+            view.shape.add_sphere(list(sphere_coordinates), [0.8,0.8,0.8], sphere_radius)
+
+        return view
 
