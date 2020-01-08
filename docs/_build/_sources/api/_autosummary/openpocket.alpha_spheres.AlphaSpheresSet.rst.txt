@@ -1,5 +1,5 @@
-openpocket.alpha\_spheres.AlphaSpheresSet
-=========================================
+alpha\_spheres.AlphaSpheresSet
+==============================
 
 .. currentmodule:: openpocket.alpha_spheres
 
