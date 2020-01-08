@@ -1,0 +1,23 @@
+openpocket.alpha\_spheres.AlphaSpheresSet
+=========================================
+
+.. currentmodule:: openpocket.alpha_spheres
+
+.. autoclass:: AlphaSpheresSet
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~AlphaSpheresSet.__init__
+      ~AlphaSpheresSet.remove
+   
+   
+
+   
+   
+   

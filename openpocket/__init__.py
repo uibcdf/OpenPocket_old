@@ -1,5 +1,4 @@
 
-from .alpha_spheres import alpha_spheres_set
-from . import clustering as clustering
-from . import methods as methods
+from .alpha_spheres import get_alpha_spheres_set
+#from . import clustering as clustering
 

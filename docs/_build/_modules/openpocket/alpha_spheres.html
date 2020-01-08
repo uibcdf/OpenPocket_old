@@ -1,0 +1,387 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>openpocket.alpha_spheres &mdash; OpenPocket 0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> OpenPocket
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Installation and Quickstart</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Quickstart.html">Quick Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../Quickstart.html#Fetching-molecular-systems-from-web-databases">Fetching molecular systems from web databases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Quickstart.html#Loading-molecular-systems-and-trajectories">Loading molecular systems and trajectories</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Quickstart.html#Converting-molecular-systems-and-trajectories">Converting molecular systems and trajectories</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Quickstart.html#Working-with-id-codes">Working with id codes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Quickstart.html#Working-with-sequences">Working with sequences</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Quickstart.html#Writting-molecular-systems-or-trajectories-as-files">Writting molecular systems or trajectories as files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Quickstart.html#Atoms-selection">Atoms selection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Quickstart.html#Viewing-molecular-systems-and-trajectories">Viewing molecular systems and trajectories</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Quickstart.html#Molecular-systems-as-MolModMT’s-forms">Molecular systems as MolModMT’s forms</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">API Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../api/index.html">Methods</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../api/_autosummary/openpocket.get_alpha_spheres_set.html">openpocket.get_alpha_spheres_set</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/index.html#objects">Objects</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../api/_autosummary/openpocket.alpha_spheres.AlphaSpheresSet.html">openpocket.alpha_spheres.AlphaSpheresSet</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">OpenPocket</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+        
+      <li>openpocket.alpha_spheres</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for openpocket.alpha_spheres</h1><div class="highlight"><pre>
+<span></span>
+<div class="viewcode-block" id="get_alpha_spheres_set"><a class="viewcode-back" href="../../api/_autosummary/openpocket.get_alpha_spheres_set.html#openpocket.alpha_spheres.get_alpha_spheres_set">[docs]</a><span class="k">def</span> <span class="nf">get_alpha_spheres_set</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">selection</span><span class="o">=</span><span class="s1">&#39;all&#39;</span><span class="p">,</span> <span class="n">frame_indices</span><span class="o">=</span><span class="s1">&#39;all&#39;</span><span class="p">,</span> <span class="n">syntaxis</span><span class="o">=</span><span class="s1">&#39;MolModMT&#39;</span><span class="p">,</span> <span class="n">minimum_radius</span> <span class="o">=</span>
+        <span class="kc">None</span><span class="p">,</span> <span class="n">maximum_radius</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+
+    <span class="sd">&quot;&quot;&quot;get_alpha_spheres_set(item, selection=&#39;all&#39;, frame_indices=&#39;all&#39;, syntaxis=&#39;MolModMT&#39;,</span>
+<span class="sd">    minimum_radius=None, maximum_radius=None)</span>
+
+<span class="sd">    Get the set of alpha spheres.</span>
+
+<span class="sd">    Given a molecular model the whole set of alpha spheres is computed for the atoms and frames</span>
+<span class="sd">    selected.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+
+<span class="sd">    item: molecular model</span>
+<span class="sd">        Molecular model in any supported form by MolModMT(see: XXX).</span>
+
+<span class="sd">    selection: str, default=&#39;heavy atoms&#39;</span>
+<span class="sd">       Selection criterion given by a string following any of the selection syntaxis parsable by</span>
+<span class="sd">       MolModMT, or a list of atoms (see: XXX).</span>
+
+<span class="sd">    syntaxis: str, default=&#39;MolModMT&#39;</span>
+<span class="sd">       Syntaxis used to write the argument `selection`. The current options supported by MolModMt</span>
+<span class="sd">       can be found in (see: XXX).</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+
+<span class="sd">    Class AlphaSpheres</span>
+<span class="sd">        The output is an object of class AlphaSpheres (see: XXX).</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+
+<span class="sd">    See Also</span>
+<span class="sd">    --------</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># fpocket</span>
+    <span class="c1"># minimum_radius = 3.2 * angstroms</span>
+    <span class="c1"># maximum_radius = 7.6 * angstroms</span>
+
+    <span class="c1"># alphaspace</span>
+    <span class="c1"># minimum_radius = 3.2 * angstroms</span>
+    <span class="c1"># maximum_radius = 5.4 * angstroms</span>
+
+    <span class="kn">from</span> <span class="nn">molmodmt</span> <span class="k">import</span> <span class="n">select</span><span class="p">,</span> <span class="n">get</span>
+    <span class="kn">from</span> <span class="nn">numpy</span> <span class="k">import</span> <span class="n">where</span>
+
+    <span class="n">atom_indices</span> <span class="o">=</span> <span class="n">select</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">selection</span><span class="o">=</span><span class="n">selection</span><span class="p">,</span> <span class="n">syntaxis</span><span class="o">=</span><span class="n">syntaxis</span><span class="p">)</span>
+    <span class="n">coordinates</span> <span class="o">=</span> <span class="n">get</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="s1">&#39;atom&#39;</span><span class="p">,</span> <span class="n">indices</span><span class="o">=</span><span class="n">atom_indices</span><span class="p">,</span> <span class="n">frame_indices</span><span class="o">=</span><span class="n">frame_indices</span><span class="p">,</span> <span class="n">coordinates</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="n">alpha_spheres_set</span> <span class="o">=</span> <span class="n">AlphaSpheresSet</span><span class="p">(</span><span class="n">points</span><span class="o">=</span><span class="n">coordinates</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">minimum_radius</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">indices_to_remove</span> <span class="o">=</span> <span class="n">where</span><span class="p">(</span><span class="n">alpha_spheres_set</span><span class="o">.</span><span class="n">radii</span> <span class="o">&lt;</span> <span class="n">minimum_radius</span><span class="p">)</span>
+        <span class="n">alpha_spheres_set</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">indices_to_remove</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">maximum_radius</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">indices_to_remove</span> <span class="o">=</span> <span class="n">where</span><span class="p">(</span><span class="n">alpha_spheres_set</span><span class="o">.</span><span class="n">radii</span> <span class="o">&gt;</span> <span class="n">maximum_radius</span><span class="p">)</span>
+        <span class="n">alpha_spheres_set</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">indices_to_remove</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">alpha_spheres_set</span></div>
+
+<div class="viewcode-block" id="AlphaSpheresSet"><a class="viewcode-back" href="../../api/_autosummary/openpocket.alpha_spheres.AlphaSpheresSet.html#openpocket.alpha_spheres.AlphaSpheresSet">[docs]</a><span class="k">class</span> <span class="nc">AlphaSpheresSet</span><span class="p">():</span>
+
+    <span class="sd">&quot;&quot;&quot;Set of alpha-spheres</span>
+
+<span class="sd">    Object with a set of alpha-spheres and its main attributes such as radius, etc.</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    points : numpy.ndarray ([n_points,3])</span>
+<span class="sd">        Array of coordinates in space of all points used to generate the set of alpha-spheres.</span>
+<span class="sd">    n_points: int</span>
+<span class="sd">        Number of points in space to generate the set of alpha-spheres.</span>
+<span class="sd">    vertices: xxx</span>
+<span class="sd">        No recuerdo ahora.</span>
+<span class="sd">    neighbor_points: xxx</span>
+<span class="sd">        Indices of points in the surface of each alpha-sphere.</span>
+<span class="sd">    radii: numpy.ndarray</span>
+<span class="sd">        Array with the radii of alpha-spheres.</span>
+<span class="sd">    n_alpha_spheres: int</span>
+<span class="sd">        Number of alpha-spheres in the set.</span>
+
+<span class="sd">    Methods</span>
+<span class="sd">    -------</span>
+<span class="sd">    remove(indices)</span>
+<span class="sd">        Removing alpha-spheres from the set</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+<div class="viewcode-block" id="AlphaSpheresSet.__init__"><a class="viewcode-back" href="../../api/_autosummary/openpocket.alpha_spheres.AlphaSpheresSet.html#openpocket.alpha_spheres.AlphaSpheresSet.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">points</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+
+        <span class="sd">&quot;&quot;&quot;Creating a new instance of AlphaSpheresSet</span>
+
+<span class="sd">        With an array of three dimensional positions (`points`) the resultant set of alpha-spheres is returned</span>
+<span class="sd">        as a class AlphaSpheresSet.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+
+<span class="sd">        points: numpy array</span>
+<span class="sd">            Float numpy array with shape: [natoms, 3]</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+
+<span class="sd">        See Also</span>
+<span class="sd">        --------</span>
+
+<span class="sd">        Notes</span>
+<span class="sd">        -----</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">points</span><span class="o">=</span><span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n_points</span><span class="o">=</span><span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">vertices</span><span class="o">=</span><span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">neighbor_points</span><span class="o">=</span><span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">radii</span><span class="o">=</span><span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n_alpha_spheres</span><span class="o">=</span><span class="kc">None</span>
+
+        <span class="k">if</span> <span class="n">points</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+
+            <span class="kn">from</span> <span class="nn">scipy.spatial</span> <span class="k">import</span> <span class="n">Voronoi</span>
+            <span class="kn">from</span> <span class="nn">molmodmt</span> <span class="k">import</span> <span class="n">neighbors_lists</span>
+            <span class="kn">from</span> <span class="nn">numpy</span> <span class="k">import</span> <span class="n">array</span><span class="p">,</span> <span class="n">zeros</span>
+
+            <span class="n">unit_length</span> <span class="o">=</span> <span class="n">points</span><span class="o">.</span><span class="n">unit</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">points</span> <span class="o">=</span> <span class="n">points</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">n_points</span> <span class="o">=</span> <span class="n">points</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">vertices</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">neighbor_points</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">radii</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">n_alpha_spheres</span> <span class="o">=</span> <span class="mi">0</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">vertices</span> <span class="o">=</span> <span class="n">Voronoi</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">points</span><span class="p">[:,:])</span><span class="o">.</span><span class="n">vertices</span><span class="o">*</span><span class="n">unit_length</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">neighbor_points</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">radii</span> <span class="o">=</span> <span class="n">neighbors_lists</span><span class="p">(</span><span class="n">item_1</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">vertices</span><span class="p">,</span> <span class="n">item_2</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">points</span><span class="p">,</span> <span class="n">num_neighbors</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">neighbor_points</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">neighbor_points</span><span class="p">[</span><span class="mi">0</span><span class="p">,:,:]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">radii</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">radii</span><span class="p">[</span><span class="mi">0</span><span class="p">,:,</span><span class="mi">0</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="AlphaSpheresSet.remove"><a class="viewcode-back" href="../../api/_autosummary/openpocket.alpha_spheres.AlphaSpheresSet.html#openpocket.alpha_spheres.AlphaSpheresSet.remove">[docs]</a>    <span class="k">def</span> <span class="nf">remove</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">indices</span><span class="p">):</span>
+
+        <span class="sd">&quot;&quot;&quot;Removing alpha-spheres from the set</span>
+
+<span class="sd">        The method removes from the set those alpha-spheres specified by the input argument</span>
+<span class="sd">        `indices`.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        indices : numpy.ndarray, list or tuple (dtype:ints)</span>
+<span class="sd">            List, tuple or numpy.ndarray with the integer numbers corresponding to the alpha-sphere</span>
+<span class="sd">            indices to be removed from the set.</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="kn">from</span> <span class="nn">numpy</span> <span class="k">import</span> <span class="n">ones</span>
+        <span class="n">mask</span> <span class="o">=</span> <span class="n">ones</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">n_alpha_spheres</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">bool</span><span class="p">)</span>
+        <span class="n">mask</span><span class="p">[</span><span class="n">indices</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">vertices</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">vertices</span><span class="p">[</span><span class="n">mask</span><span class="p">,:]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">neighbor_points</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">neighbor_points</span><span class="p">[</span><span class="n">mask</span><span class="p">,:]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">radii</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">radii</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n_alpha_spheres</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">vertices</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span></div></div>
+
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, UIBCDF Lab at the Mexico City Childrens Hospital Federico Gomez and authors
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

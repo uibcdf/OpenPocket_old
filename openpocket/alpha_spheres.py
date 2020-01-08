@@ -1,8 +1,8 @@
 
-def alpha_spheres(item, selection='all', frame_indices='all', syntaxis='MolModMT', minimum_radius =
+def get_alpha_spheres_set(item, selection='all', frame_indices='all', syntaxis='MolModMT', minimum_radius =
         None, maximum_radius = None):
 
-    """alpha_spheres(item, selection='all', frame_indices='all', syntaxis='MolModMT',
+    """get_alpha_spheres_set(item, selection='all', frame_indices='all', syntaxis='MolModMT',
     minimum_radius=None, maximum_radius=None)
 
     Get the set of alpha spheres.

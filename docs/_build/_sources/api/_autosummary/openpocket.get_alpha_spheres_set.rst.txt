@@ -1,0 +1,6 @@
+openpocket.get\_alpha\_spheres\_set
+===================================
+
+.. currentmodule:: openpocket
+
+.. autofunction:: get_alpha_spheres_set
