@@ -9,6 +9,6 @@ All methods and classes
 .. autosummary::
    :toctree: _autosummary
 
-   AlphaSpheresSet
    alpha_spheres
+   AlphaSpheresSet
 
