@@ -92,9 +92,12 @@ class AlphaSpheresSet():
     -------
     remove(indices)
         Removing alpha-spheres from the set
+    get_points_in_surfaces(indices)
+        Points in contact with a subset of alpha-spheres
+    view(indices)
+        3D spatial visualization of points and alpha-spheres
 
     """
-
 
     def __init__(self, points=None):
 
@@ -222,15 +225,31 @@ class AlphaSpheresSet():
 
         Parameters
         ----------
+        indices : numpy.ndarray, list or tuple (dtype:ints)
+            List, tuple or numpy.ndarray with the alpha-sphere indices defining the subset.
 
         Returns
         -------
+        view : nglview
+            View object of NGLview.
 
         Examples
         --------
 
-        """
+        >>> import openpocket as opp
+        >>> from simtk import unit
+        >>> points = ([[-1.,  2.,  0.],
+        >>>            [ 0.,  2.,  1.],
+        >>>            [ 1., -2.,  1.],
+        >>>            [ 0.,  1.,  1.],
+        >>>            [ 0.,  0.,  0.],
+        >>>            [-1., -1.,  0.]]) * unit.angstrom
+        >>> aspheres = opp.alpha_spheres.AlphaSpheresSet(points)
+        >>> view = aspheres.view([1,3])
+        >>> view
 
+
+        """
 
         import nglview as nv
 

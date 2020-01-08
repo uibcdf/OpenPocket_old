@@ -210,11 +210,11 @@
 </dd>
 <dt><strong>n_points: int</strong></dt><dd><p>Number of points in space to generate the set of alpha-spheres.</p>
 </dd>
-<dt><strong>vertices: xxx</strong></dt><dd><p>No recuerdo ahora.</p>
-</dd>
-<dt><strong>neighbor_points: xxx</strong></dt><dd><p>Indices of points in the surface of each alpha-sphere.</p>
+<dt><strong>centers: xxx</strong></dt><dd><p>No recuerdo ahora.</p>
 </dd>
 <dt><strong>radii: numpy.ndarray</strong></dt><dd><p>Array with the radii of alpha-spheres.</p>
+</dd>
+<dt><strong>points_in_surface: xxx</strong></dt><dd><p>Indices of points in the surface of each alpha-sphere.</p>
 </dd>
 <dt><strong>n_alpha_spheres: int</strong></dt><dd><p>Number of alpha-spheres in the set.</p>
 </dd>
@@ -224,12 +224,18 @@
 <p class="rubric">Methods</p>
 <table class="docutils align-default">
 <colgroup>
-<col style="width: 35%" />
-<col style="width: 65%" />
+<col style="width: 40%" />
+<col style="width: 60%" />
 </colgroup>
 <tbody>
 <tr class="row-odd"><td><p><strong>remove(indices)</strong></p></td>
 <td><p>Removing alpha-spheres from the set</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>get_points_in_surfaces(indices)</strong></p></td>
+<td><p>Points in contact with a subset of alpha-spheres</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>view(indices)</strong></p></td>
+<td><p>3D spatial visualization of points and alpha-spheres</p></td>
 </tr>
 </tbody>
 </table>
@@ -265,6 +271,35 @@ as a class AlphaSpheresSet.</p>
 </tbody>
 </table>
 <dl class="method">
+<dt id="openpocket.alpha_spheres.AlphaSpheresSet.get_points_in_surfaces">
+<code class="sig-name descname">get_points_in_surfaces</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">indices</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/openpocket/alpha_spheres.html#AlphaSpheresSet.get_points_in_surfaces"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openpocket.alpha_spheres.AlphaSpheresSet.get_points_in_surfaces" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the points in contact with a subset of alpha-spheres</p>
+<p>The list of point indices accounting for the points in contact with a subset of alpha-spheres is calculated.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>indices</strong><span class="classifier">numpy.ndarray, list or tuple (dtype:ints)</span></dt><dd><p>List, tuple or numpy.ndarray with the alpha-sphere indices defining the subset.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">openpocket</span> <span class="k">as</span> <span class="nn">opp</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">simtk</span> <span class="k">import</span> <span class="n">unit</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">points</span> <span class="o">=</span> <span class="p">([[</span><span class="o">-</span><span class="mf">1.</span><span class="p">,</span>  <span class="mf">2.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">],</span>
+<span class="gp">&gt;&gt;&gt; </span>           <span class="p">[</span> <span class="mf">0.</span><span class="p">,</span>  <span class="mf">2.</span><span class="p">,</span>  <span class="mf">1.</span><span class="p">],</span>
+<span class="gp">&gt;&gt;&gt; </span>           <span class="p">[</span> <span class="mf">1.</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.</span><span class="p">,</span>  <span class="mf">1.</span><span class="p">],</span>
+<span class="gp">&gt;&gt;&gt; </span>           <span class="p">[</span> <span class="mf">0.</span><span class="p">,</span>  <span class="mf">1.</span><span class="p">,</span>  <span class="mf">1.</span><span class="p">],</span>
+<span class="gp">&gt;&gt;&gt; </span>           <span class="p">[</span> <span class="mf">0.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">],</span>
+<span class="gp">&gt;&gt;&gt; </span>           <span class="p">[</span><span class="o">-</span><span class="mf">1.</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">]])</span> <span class="o">*</span> <span class="n">unit</span><span class="o">.</span><span class="n">angstrom</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">aspheres</span> <span class="o">=</span> <span class="n">opp</span><span class="o">.</span><span class="n">alpha_spheres</span><span class="o">.</span><span class="n">AlphaSpheresSet</span><span class="p">(</span><span class="n">points</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">aspheres</span><span class="o">.</span><span class="n">get_points_in_surfaces</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
+<span class="go">[0,2,3,4,5]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
 <dt id="openpocket.alpha_spheres.AlphaSpheresSet.remove">
 <code class="sig-name descname">remove</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">indices</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/openpocket/alpha_spheres.html#AlphaSpheresSet.remove"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openpocket.alpha_spheres.AlphaSpheresSet.remove" title="Permalink to this definition">¶</a></dt>
 <dd><p>Removing alpha-spheres from the set</p>
@@ -279,6 +314,41 @@ indices to be removed from the set.</p>
 </dl>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="openpocket.alpha_spheres.AlphaSpheresSet.view">
+<code class="sig-name descname">view</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">indices='all'</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/openpocket/alpha_spheres.html#AlphaSpheresSet.view"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openpocket.alpha_spheres.AlphaSpheresSet.view" title="Permalink to this definition">¶</a></dt>
+<dd><p>3D spatial view of alpha-spheres and points</p>
+<p>An NGLview view is returned with alpha-spheres (gray color) and points (red color).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>indices</strong><span class="classifier">numpy.ndarray, list or tuple (dtype:ints)</span></dt><dd><p>List, tuple or numpy.ndarray with the alpha-sphere indices defining the subset.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>view</strong><span class="classifier">nglview</span></dt><dd><p>View object of NGLview.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">openpocket</span> <span class="k">as</span> <span class="nn">opp</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">simtk</span> <span class="k">import</span> <span class="n">unit</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">points</span> <span class="o">=</span> <span class="p">([[</span><span class="o">-</span><span class="mf">1.</span><span class="p">,</span>  <span class="mf">2.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">],</span>
+<span class="gp">&gt;&gt;&gt; </span>           <span class="p">[</span> <span class="mf">0.</span><span class="p">,</span>  <span class="mf">2.</span><span class="p">,</span>  <span class="mf">1.</span><span class="p">],</span>
+<span class="gp">&gt;&gt;&gt; </span>           <span class="p">[</span> <span class="mf">1.</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.</span><span class="p">,</span>  <span class="mf">1.</span><span class="p">],</span>
+<span class="gp">&gt;&gt;&gt; </span>           <span class="p">[</span> <span class="mf">0.</span><span class="p">,</span>  <span class="mf">1.</span><span class="p">,</span>  <span class="mf">1.</span><span class="p">],</span>
+<span class="gp">&gt;&gt;&gt; </span>           <span class="p">[</span> <span class="mf">0.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">],</span>
+<span class="gp">&gt;&gt;&gt; </span>           <span class="p">[</span><span class="o">-</span><span class="mf">1.</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">]])</span> <span class="o">*</span> <span class="n">unit</span><span class="o">.</span><span class="n">angstrom</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">aspheres</span> <span class="o">=</span> <span class="n">opp</span><span class="o">.</span><span class="n">alpha_spheres</span><span class="o">.</span><span class="n">AlphaSpheresSet</span><span class="p">(</span><span class="n">points</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">view</span> <span class="o">=</span> <span class="n">aspheres</span><span class="o">.</span><span class="n">view</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">view</span>
+</pre></div>
+</div>
 </dd></dl>
 
 </dd></dl>

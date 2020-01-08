@@ -249,12 +249,12 @@
 <span class="sd">        Array of coordinates in space of all points used to generate the set of alpha-spheres.</span>
 <span class="sd">    n_points: int</span>
 <span class="sd">        Number of points in space to generate the set of alpha-spheres.</span>
-<span class="sd">    vertices: xxx</span>
+<span class="sd">    centers: xxx</span>
 <span class="sd">        No recuerdo ahora.</span>
-<span class="sd">    neighbor_points: xxx</span>
-<span class="sd">        Indices of points in the surface of each alpha-sphere.</span>
 <span class="sd">    radii: numpy.ndarray</span>
 <span class="sd">        Array with the radii of alpha-spheres.</span>
+<span class="sd">    points_in_surface: xxx</span>
+<span class="sd">        Indices of points in the surface of each alpha-sphere.</span>
 <span class="sd">    n_alpha_spheres: int</span>
 <span class="sd">        Number of alpha-spheres in the set.</span>
 
@@ -262,9 +262,12 @@
 <span class="sd">    -------</span>
 <span class="sd">    remove(indices)</span>
 <span class="sd">        Removing alpha-spheres from the set</span>
+<span class="sd">    get_points_in_surfaces(indices)</span>
+<span class="sd">        Points in contact with a subset of alpha-spheres</span>
+<span class="sd">    view(indices)</span>
+<span class="sd">        3D spatial visualization of points and alpha-spheres</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-
 
 <div class="viewcode-block" id="AlphaSpheresSet.__init__"><a class="viewcode-back" href="../../api/_autosummary/openpocket.alpha_spheres.AlphaSpheresSet.html#openpocket.alpha_spheres.AlphaSpheresSet.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">points</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 
@@ -292,8 +295,8 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">points</span><span class="o">=</span><span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">n_points</span><span class="o">=</span><span class="kc">None</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">vertices</span><span class="o">=</span><span class="kc">None</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">neighbor_points</span><span class="o">=</span><span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">centers</span><span class="o">=</span><span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">points_in_surface</span><span class="o">=</span><span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">radii</span><span class="o">=</span><span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">n_alpha_spheres</span><span class="o">=</span><span class="kc">None</span>
 
@@ -301,21 +304,22 @@
 
             <span class="kn">from</span> <span class="nn">scipy.spatial</span> <span class="k">import</span> <span class="n">Voronoi</span>
             <span class="kn">from</span> <span class="nn">molmodmt</span> <span class="k">import</span> <span class="n">neighbors_lists</span>
-            <span class="kn">from</span> <span class="nn">numpy</span> <span class="k">import</span> <span class="n">array</span><span class="p">,</span> <span class="n">zeros</span>
+            <span class="kn">from</span> <span class="nn">numpy</span> <span class="k">import</span> <span class="n">array</span><span class="p">,</span> <span class="n">zeros</span><span class="p">,</span> <span class="n">sort</span>
 
             <span class="n">unit_length</span> <span class="o">=</span> <span class="n">points</span><span class="o">.</span><span class="n">unit</span>
 
             <span class="bp">self</span><span class="o">.</span><span class="n">points</span> <span class="o">=</span> <span class="n">points</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">n_points</span> <span class="o">=</span> <span class="n">points</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">vertices</span> <span class="o">=</span> <span class="p">[]</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">neighbor_points</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">centers</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">points_in_surface</span> <span class="o">=</span> <span class="p">[]</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">radii</span> <span class="o">=</span> <span class="p">[]</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">n_alpha_spheres</span> <span class="o">=</span> <span class="mi">0</span>
 
-            <span class="bp">self</span><span class="o">.</span><span class="n">vertices</span> <span class="o">=</span> <span class="n">Voronoi</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">points</span><span class="p">[:,:])</span><span class="o">.</span><span class="n">vertices</span><span class="o">*</span><span class="n">unit_length</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">neighbor_points</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">radii</span> <span class="o">=</span> <span class="n">neighbors_lists</span><span class="p">(</span><span class="n">item_1</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">vertices</span><span class="p">,</span> <span class="n">item_2</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">points</span><span class="p">,</span> <span class="n">num_neighbors</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">neighbor_points</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">neighbor_points</span><span class="p">[</span><span class="mi">0</span><span class="p">,:,:]</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">radii</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">radii</span><span class="p">[</span><span class="mi">0</span><span class="p">,:,</span><span class="mi">0</span><span class="p">]</span></div>
+            <span class="bp">self</span><span class="o">.</span><span class="n">centers</span> <span class="o">=</span> <span class="n">Voronoi</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">points</span><span class="p">[:,:])</span><span class="o">.</span><span class="n">vertices</span><span class="o">*</span><span class="n">unit_length</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">points_in_surface</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">radii</span> <span class="o">=</span> <span class="n">neighbors_lists</span><span class="p">(</span><span class="n">item_1</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">centers</span><span class="p">,</span> <span class="n">item_2</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">points</span><span class="p">,</span> <span class="n">num_neighbors</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">points_in_surface</span> <span class="o">=</span> <span class="n">sort</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">points_in_surface</span><span class="p">[</span><span class="mi">0</span><span class="p">,:,:])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">radii</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">radii</span><span class="p">[</span><span class="mi">0</span><span class="p">,:,</span><span class="mi">0</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">n_alpha_spheres</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">centers</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span></div>
 
 <div class="viewcode-block" id="AlphaSpheresSet.remove"><a class="viewcode-back" href="../../api/_autosummary/openpocket.alpha_spheres.AlphaSpheresSet.html#openpocket.alpha_spheres.AlphaSpheresSet.remove">[docs]</a>    <span class="k">def</span> <span class="nf">remove</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">indices</span><span class="p">):</span>
 
@@ -338,10 +342,107 @@
         <span class="kn">from</span> <span class="nn">numpy</span> <span class="k">import</span> <span class="n">ones</span>
         <span class="n">mask</span> <span class="o">=</span> <span class="n">ones</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">n_alpha_spheres</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">bool</span><span class="p">)</span>
         <span class="n">mask</span><span class="p">[</span><span class="n">indices</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">vertices</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">vertices</span><span class="p">[</span><span class="n">mask</span><span class="p">,:]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">neighbor_points</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">neighbor_points</span><span class="p">[</span><span class="n">mask</span><span class="p">,:]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">centers</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">centers</span><span class="p">[</span><span class="n">mask</span><span class="p">,:]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">points_in_surface</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">points_in_surface</span><span class="p">[</span><span class="n">mask</span><span class="p">,:]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">radii</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">radii</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">n_alpha_spheres</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">vertices</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span></div></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n_alpha_spheres</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">centers</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="AlphaSpheresSet.get_points_in_surfaces"><a class="viewcode-back" href="../../api/_autosummary/openpocket.alpha_spheres.AlphaSpheresSet.html#openpocket.alpha_spheres.AlphaSpheresSet.get_points_in_surfaces">[docs]</a>    <span class="k">def</span> <span class="nf">get_points_in_surfaces</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">indices</span><span class="p">):</span>
+
+        <span class="sd">&quot;&quot;&quot;Get the points in contact with a subset of alpha-spheres</span>
+
+<span class="sd">        The list of point indices accounting for the points in contact with a subset of alpha-spheres is calculated.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        indices : numpy.ndarray, list or tuple (dtype:ints)</span>
+<span class="sd">            List, tuple or numpy.ndarray with the alpha-sphere indices defining the subset.</span>
+
+<span class="sd">        Return</span>
+<span class="sd">        ------</span>
+<span class="sd">        points_in_surfaces : list</span>
+<span class="sd">            List of point indices in contact with one or more alpha-spheres of the subset.</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+
+<span class="sd">        &gt;&gt;&gt; import openpocket as opp</span>
+<span class="sd">        &gt;&gt;&gt; from simtk import unit</span>
+<span class="sd">        &gt;&gt;&gt; points = ([[-1.,  2.,  0.],</span>
+<span class="sd">        &gt;&gt;&gt;            [ 0.,  2.,  1.],</span>
+<span class="sd">        &gt;&gt;&gt;            [ 1., -2.,  1.],</span>
+<span class="sd">        &gt;&gt;&gt;            [ 0.,  1.,  1.],</span>
+<span class="sd">        &gt;&gt;&gt;            [ 0.,  0.,  0.],</span>
+<span class="sd">        &gt;&gt;&gt;            [-1., -1.,  0.]]) * unit.angstrom</span>
+<span class="sd">        &gt;&gt;&gt; aspheres = opp.alpha_spheres.AlphaSpheresSet(points)</span>
+<span class="sd">        &gt;&gt;&gt; aspheres.get_points_in_surfaces([1,3])</span>
+<span class="sd">        [0,2,3,4,5]</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">point_indices</span> <span class="o">=</span> <span class="nb">set</span><span class="p">([])</span>
+
+        <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="n">indices</span><span class="p">:</span>
+            <span class="n">point_indices</span> <span class="o">=</span> <span class="n">point_indices</span><span class="o">.</span><span class="n">union</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">points_in_surface</span><span class="p">[</span><span class="n">index</span><span class="p">]))</span>
+
+        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">point_indices</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="AlphaSpheresSet.view"><a class="viewcode-back" href="../../api/_autosummary/openpocket.alpha_spheres.AlphaSpheresSet.html#openpocket.alpha_spheres.AlphaSpheresSet.view">[docs]</a>    <span class="k">def</span> <span class="nf">view</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">indices</span><span class="o">=</span><span class="s1">&#39;all&#39;</span><span class="p">):</span>
+
+        <span class="sd">&quot;&quot;&quot;3D spatial view of alpha-spheres and points</span>
+
+<span class="sd">        An NGLview view is returned with alpha-spheres (gray color) and points (red color).</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        indices : numpy.ndarray, list or tuple (dtype:ints)</span>
+<span class="sd">            List, tuple or numpy.ndarray with the alpha-sphere indices defining the subset.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        view : nglview</span>
+<span class="sd">            View object of NGLview.</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+
+<span class="sd">        &gt;&gt;&gt; import openpocket as opp</span>
+<span class="sd">        &gt;&gt;&gt; from simtk import unit</span>
+<span class="sd">        &gt;&gt;&gt; points = ([[-1.,  2.,  0.],</span>
+<span class="sd">        &gt;&gt;&gt;            [ 0.,  2.,  1.],</span>
+<span class="sd">        &gt;&gt;&gt;            [ 1., -2.,  1.],</span>
+<span class="sd">        &gt;&gt;&gt;            [ 0.,  1.,  1.],</span>
+<span class="sd">        &gt;&gt;&gt;            [ 0.,  0.,  0.],</span>
+<span class="sd">        &gt;&gt;&gt;            [-1., -1.,  0.]]) * unit.angstrom</span>
+<span class="sd">        &gt;&gt;&gt; aspheres = opp.alpha_spheres.AlphaSpheresSet(points)</span>
+<span class="sd">        &gt;&gt;&gt; view = aspheres.view([1,3])</span>
+<span class="sd">        &gt;&gt;&gt; view</span>
+
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="kn">import</span> <span class="nn">nglview</span> <span class="k">as</span> <span class="nn">nv</span>
+
+        <span class="n">view</span> <span class="o">=</span> <span class="n">nv</span><span class="o">.</span><span class="n">NGLWidget</span><span class="p">()</span>
+
+        <span class="n">point_indices</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">if</span> <span class="n">indices</span><span class="o">==</span><span class="s1">&#39;all&#39;</span><span class="p">:</span>
+            <span class="n">indices</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_alpha_spheres</span><span class="p">)</span>
+            <span class="n">point_indices</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_points</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">point_indices</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">get_points_in_surfaces</span><span class="p">(</span><span class="n">indices</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="n">point_indices</span><span class="p">:</span>
+            <span class="n">atom_coordinates</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">points</span><span class="p">[</span><span class="n">index</span><span class="p">,:]</span><span class="o">.</span><span class="n">_value</span>
+            <span class="n">view</span><span class="o">.</span><span class="n">shape</span><span class="o">.</span><span class="n">add_sphere</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">atom_coordinates</span><span class="p">),</span> <span class="p">[</span><span class="mf">0.8</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">],</span> <span class="mf">0.2</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="n">indices</span><span class="p">:</span>
+            <span class="n">sphere_coordinates</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">centers</span><span class="p">[</span><span class="n">index</span><span class="p">,:]</span><span class="o">.</span><span class="n">_value</span>
+            <span class="n">sphere_radius</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">radii</span><span class="p">[</span><span class="n">index</span><span class="p">]</span><span class="o">.</span><span class="n">_value</span>
+            <span class="n">view</span><span class="o">.</span><span class="n">shape</span><span class="o">.</span><span class="n">add_sphere</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">sphere_coordinates</span><span class="p">),</span> <span class="p">[</span><span class="mf">0.8</span><span class="p">,</span><span class="mf">0.8</span><span class="p">,</span><span class="mf">0.8</span><span class="p">],</span> <span class="n">sphere_radius</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">view</span></div></div>
 
 </pre></div>
 
