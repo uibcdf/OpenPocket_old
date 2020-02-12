@@ -50,20 +50,17 @@ def get_alpha_spheres_set(item, selection='all', frame_indices='all', syntaxis='
     # maximum_radius = 5.4 * angstroms
 
     from molmodmt import select, get
-    from numpy import where
 
     atom_indices = select(item, selection=selection, syntaxis=syntaxis)
     coordinates = get(item, target='atom', indices=atom_indices, frame_indices=frame_indices, coordinates=True)
 
-    alpha_spheres_set = AlphaSpheresSet(points=coordinates)
+    alpha_spheres_set = AlphaSpheresSet(points=coordinates[0,:,:])
 
     if minimum_radius is not None:
-        indices_to_remove = where(alpha_spheres_set.radii < minimum_radius)
-        alpha_spheres_set.remove(indices_to_remove)
+        alpha_spheres_set.remove_small_alpha_spheres(minimum_radius)
 
     if maximum_radius is not None:
-        indices_to_remove = where(alpha_spheres_set.radii > maximum_radius)
-        alpha_spheres_set.remove(indices_to_remove)
+        alpha_spheres_set.remove_big_alpha_spheres(minimum_radius)
 
     return alpha_spheres_set
 
@@ -83,7 +80,7 @@ class AlphaSpheresSet():
         No recuerdo ahora.
     radii: numpy.ndarray
         Array with the radii of alpha-spheres.
-    points_in_surface: xxx
+    points_of_alpha_sphere: xxx
         Indices of points in the surface of each alpha-sphere.
     n_alpha_spheres: int
         Number of alpha-spheres in the set.
@@ -126,7 +123,7 @@ class AlphaSpheresSet():
         self.points=None
         self.n_points=None
         self.centers=None
-        self.points_in_surface=None
+        self.points_of_alpha_sphere=None
         self.radii=None
         self.n_alpha_spheres=None
 
@@ -141,15 +138,31 @@ class AlphaSpheresSet():
             self.points = points
             self.n_points = points.shape[0]
             self.centers = []
-            self.points_in_surface = []
+            self.points_of_alpha_sphere = []
             self.radii = []
             self.n_alpha_spheres = 0
 
             self.centers = Voronoi(self.points[:,:]).vertices*unit_length
-            self.points_in_surface, self.radii = neighbors_lists(item_1=self.centers, item_2=self.points, num_neighbors=4)
-            self.points_in_surface = sort(self.points_in_surface[0,:,:])
+            self.points_of_alpha_sphere, self.radii = neighbors_lists(item_1=self.centers, item_2=self.points, num_neighbors=4)
+            self.points_of_alpha_sphere = sort(self.points_of_alpha_sphere[0,:,:])
             self.radii = self.radii[0,:,0]
             self.n_alpha_spheres = self.centers.shape[0]
+
+            ## This code computes points_of_alpha_sphere with out computing distances
+            ## This should be cheaper
+            #vor = Voronoi(self.points[:,:])
+            #n_vertices = vor.vertices.shape[0]
+            #n_regions = len(vor.regions)
+            #n_points = vor.npoints
+            #points_of_alpha_sphere = [[] for ii in range(n_vertices)]
+            #region_point={vor.point_region[ii]:ii for ii in range(n_points)}
+            #for region_index in range(n_regions):
+            #    region=vor.regions[region_index]
+            #    if len(region)>0:
+            #        point_index=region_point[region_index]
+            #        for vertex_index in region:
+            #            if vertex_index != -1:
+            #                points_of_alpha_sphere[vertex_index].append(point_index)
 
     def remove(self, indices):
 
@@ -173,11 +186,55 @@ class AlphaSpheresSet():
         mask = ones([self.n_alpha_spheres], dtype=bool)
         mask[indices] = False
         self.centers = self.centers[mask,:]
-        self.points_in_surface = self.points_in_surface[mask,:]
+        self.points_of_alpha_sphere = self.points_of_alpha_sphere[mask,:]
         self.radii = self.radii[mask]
         self.n_alpha_spheres = self.centers.shape[0]
 
-    def get_points_in_surfaces(self, indices):
+    def remove_small_alpha_spheres(self, minimum_radius):
+
+        """Removing smaller alpha-spheres than a given radius
+
+        The method removes from the set those alpha-spheres with their radii shorter than a minimum
+        radius.
+
+        Parameters
+        ----------
+        minimum_radius : Quantity
+            Those spheres with a radius smaller than this minimum radius will be removed from
+            the set.
+
+        Examples
+        --------
+
+        """
+
+        from numpy import where
+        indices_to_remove = where(self.radii < minimum_radius)
+        self.remove(indices_to_remove)
+
+    def remove_big_alpha_spheres(self, maximum_radius):
+
+        """Removing alpha-spheres with large radii
+
+        The method removes from the set those alpha-spheres with their radii larger than a maximum
+        radius.
+
+        Parameters
+        ----------
+        maximum_radius : Quantity
+            Those spheres with a radius smaller than this minimum radius will be removed from
+            the set.
+
+        Examples
+        --------
+
+        """
+
+        from numpy import where
+        indices_to_remove = where(self.radii > maximum_radius)
+        self.remove(indices_to_remove)
+
+    def get_points_of_alpha_spheres(self, indices):
 
         """Get the points in contact with a subset of alpha-spheres
 
@@ -190,7 +247,7 @@ class AlphaSpheresSet():
 
         Return
         ------
-        points_in_surfaces : list
+        points_of_alpha_spheres : list
             List of point indices in contact with one or more alpha-spheres of the subset.
 
         Examples
@@ -205,7 +262,7 @@ class AlphaSpheresSet():
         >>>            [ 0.,  0.,  0.],
         >>>            [-1., -1.,  0.]]) * unit.angstrom
         >>> aspheres = opp.alpha_spheres.AlphaSpheresSet(points)
-        >>> aspheres.get_points_in_surfaces([1,3])
+        >>> aspheres.get_points_of_alpha_spheres([1,3])
         [0,2,3,4,5]
 
         """
@@ -213,7 +270,7 @@ class AlphaSpheresSet():
         point_indices = set([])
 
         for index in indices:
-            point_indices = point_indices.union(set(self.points_in_surface[index]))
+            point_indices = point_indices.union(set(self.points_of_alpha_sphere[index]))
 
         return list(point_indices)
 
@@ -261,7 +318,7 @@ class AlphaSpheresSet():
             indices=range(self.n_alpha_spheres)
             point_indices=range(self.n_points)
         else:
-            point_indices=self.get_points_in_surfaces(indices)
+            point_indices=self.get_points_of_alpha_spheres(indices)
 
         for index in point_indices:
             atom_coordinates = self.points[index,:]._value
