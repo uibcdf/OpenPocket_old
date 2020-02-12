@@ -1,17 +1,17 @@
-from simtk.unit import angstroms as _angstroms
+from simtk.unit import angstroms
 
-def clustering_fpocket(alpha_spheres_set, maximum_distance_first_clustering=1.8*_angstroms,
+def clustering_fpocket(alpha_spheres_set, maximum_distance_first_clustering=1.8*angstroms,
         clustering_method=None):
 
         #clustering_method='a', 's'
     pass
 
-def distance_between_vertices(alpha_spheres_set, threshold=1.8*_angstroms):
+def distance_connectivity(alpha_spheres_set, threshold=1.8*angstroms):
 
     from molmodmt.distances import contact_map
     from networkx import from_numpy_matrix, connected_components
 
-    cmap = contact_map(item_1=alpha_spheres_set.vertices, threshold=threshold)
+    cmap = contact_map(item_1=alpha_spheres_set.centers, threshold=threshold)
     graph = from_numpy_matrix(cmap[0])
     clusters= list(connected_components(graph))
     del(graph)
