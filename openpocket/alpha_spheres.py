@@ -1,8 +1,8 @@
 
-def get_alpha_spheres_set(item, selection='all', frame_indices='all', syntaxis='MolModMT', minimum_radius =
+def get_alpha_spheres_set(item, selection='all', frame_indices='all', syntaxis='MolSysMT', minimum_radius =
         None, maximum_radius = None):
 
-    """get_alpha_spheres_set(item, selection='all', frame_indices='all', syntaxis='MolModMT',
+    """get_alpha_spheres_set(item, selection='all', frame_indices='all', syntaxis='MolSysMT',
     minimum_radius=None, maximum_radius=None)
 
     Get the set of alpha spheres.
@@ -49,7 +49,7 @@ def get_alpha_spheres_set(item, selection='all', frame_indices='all', syntaxis='
     # minimum_radius = 3.2 * angstroms
     # maximum_radius = 5.4 * angstroms
 
-    from molmodmt import select, get
+    from molsysmt import select, get
 
     atom_indices = select(item, selection=selection, syntaxis=syntaxis)
     coordinates = get(item, target='atom', indices=atom_indices, frame_indices=frame_indices, coordinates=True)
@@ -126,11 +126,12 @@ class AlphaSpheresSet():
         self.points_of_alpha_sphere=None
         self.radii=None
         self.n_alpha_spheres=None
+        self.voronoi=None
 
         if points is not None:
 
             from scipy.spatial import Voronoi
-            from molmodmt import neighbors_lists
+            from molsysmt import neighbors_lists
             from numpy import array, zeros, sort
 
             unit_length = points.unit
@@ -142,7 +143,8 @@ class AlphaSpheresSet():
             self.radii = []
             self.n_alpha_spheres = 0
 
-            self.centers = Voronoi(self.points[:,:]).vertices*unit_length
+            self.voronoi = Voronoi(self.points[:,:])
+            self.centers = self.voronoi.vertices*unit_length
             self.points_of_alpha_sphere, self.radii = neighbors_lists(item_1=self.centers, item_2=self.points, num_neighbors=4)
             self.points_of_alpha_sphere = sort(self.points_of_alpha_sphere[0,:,:])
             self.radii = self.radii[0,:,0]
